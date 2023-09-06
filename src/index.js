@@ -1,12 +1,9 @@
 import express from "express"
-import v1Router from "./v1/routes/index.js"
 import v1WorkoutRouter from "./v1/routes/workoutRoutes.js"
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json())
-
-app.use("/api/v1", v1Router);
 
 app.use("/api/v1/workout", v1WorkoutRouter)
 

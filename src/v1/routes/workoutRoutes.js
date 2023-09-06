@@ -1,22 +1,23 @@
 import express from "express";
-import { createWorkout } from "../../controllers/workoutController.js";
+import {
+  createWorkout,
+  updateWorkout,
+  getWorkout,
+  destroyWorkout,
+} from "../../controllers/workoutController.js";
 
-const router = express.Router()
+const router = express.Router();
 
 router.route("/:workoutId").get((request, response) => {
-    response.send({status:200, body: "Workout retrieved."})
-})
+  getWorkout(request, response);
+});
 
-router.route("/workouts").post((request, response) => {
-    createWorkout(request, response)
-})
+router.post("/workouts", createWorkout)
 
-router.route("/:workoutId").patch((request, response) => {
-    response.send({status:200, body: "Workout Updated."})
-})
+router.patch("/:workoutId", updateWorkout)
 
 router.route("/:workoutId").delete((request, response) => {
-    response.send({status:204})    
-})
+  destroyWorkout(request, response);
+});
 
-export default router
+export default router;
